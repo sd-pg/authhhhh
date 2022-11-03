@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const sequelize = require('./db')
+const cors = require('cors');
 const models = require('./models/user-models')
 const models2 = require('./models/token-models')
 const cookieParser = require('cookie-parser')
@@ -13,7 +14,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 app.use('/api', router);
-
+app.use(cors());
 
 
 const start = async () => {
