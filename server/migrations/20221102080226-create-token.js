@@ -5,7 +5,7 @@ module.exports = {
     const transaction = await queryInterface.sequelize.transaction();
 
     try {
-      await queryInterface.createTable("Token", {
+      await queryInterface.createTable("Tokens", {
         id: {
           type: DataTypes.INTEGER,
           primaryKey: true,
@@ -16,7 +16,7 @@ module.exports = {
         userId:{
           type: DataTypes.INTEGER,
           references: {
-            model: "User",
+            model: "Users",
             key: "id"
           }
         },
@@ -25,7 +25,7 @@ module.exports = {
           required: true
         },
 
-      }, {transaction})
+      }, {timestamps: false}, {transaction})
 
       await transaction.commit()
 
@@ -39,7 +39,7 @@ module.exports = {
     const transaction = await queryInterface.sequelize.transaction();
 
     try {
-      await queryInterface.dropTable("Token", {transaction})
+      await queryInterface.dropTable("Tokens", {transaction})
 
       await transaction.commit()
     } catch (error) {

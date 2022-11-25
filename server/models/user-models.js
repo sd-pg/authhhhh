@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, Sequelize) => {
-    const User = sequelize.define("User", {
+    const Users = sequelize.define("Users", {
         id: {
             allowNull: false,
             primaryKey: true,
@@ -27,8 +27,8 @@ module.exports = (sequelize, Sequelize) => {
 
         activationLink: {
             type: Sequelize.STRING
-        }
-    })
+        },
+    }, {timestamps: false})
 
-    return User
+    return Users
 }

@@ -1,4 +1,4 @@
-const {User} = require('../models');
+const {Users} = require('../models');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const mailService = require('./mail-service');
@@ -7,14 +7,14 @@ const UserDto = require('../dtos/user-dto');
 
 class UserService {
     async registration(email, password) {
-        const candidate = await User.findOne({ where: { email: email } })
+        const candidate = await Users.findOne({ where: { email: email } })
         if (candidate) {
             throw new Error(`Пользователь с почтовым адресом ${email} уже существует`)
         }
         const hashPassword = await bcrypt.hash(password, 3);
         const activationLink = uuid.v4(); // v34fa-asfasf-142saf-sa-asf
 
-        const user = await User.create({email, password: hashPassword, activationLink})
+        const user = await Users.create({email, password: hashPassword, activationLink})
         await mailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`);
 
         const userDto = new UserDto(user); // id, email, isActivated

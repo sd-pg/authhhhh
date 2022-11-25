@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, Sequelize) => {
-    const Token = sequelize.define("Token", {
+    const Tokens = sequelize.define("Tokens", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -11,7 +11,7 @@ module.exports = (sequelize, Sequelize) => {
         userId:{
             type: Sequelize.INTEGER,
             references: {
-                model: "User",
+                model: "Users",
                 key: "id"
             }
         },
@@ -19,7 +19,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             required: true
         },
-    })
+    }, {timestamps: false})
 
-    return Token
+    return Tokens
 }

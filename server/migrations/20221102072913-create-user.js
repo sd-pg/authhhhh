@@ -6,7 +6,7 @@ module.exports = {
     const transaction = await queryInterface.sequelize.transaction();
 
     try {
-      await queryInterface.createTable("User", {
+      await queryInterface.createTable("Users", {
         id: {
           allowNull: false,
           primaryKey: true,
@@ -34,7 +34,7 @@ module.exports = {
           type: DataTypes.STRING
         },
 
-      }, {transaction})
+      }, {timestamps: false},{transaction})
 
       await transaction.commit()
 
@@ -49,7 +49,7 @@ module.exports = {
     const transaction = await queryInterface.sequelize.transaction();
 
     try {
-      await queryInterface.dropTable("User", {transaction})
+      await queryInterface.dropTable("Users", {transaction})
 
       await transaction.commit()
     } catch (error) {
