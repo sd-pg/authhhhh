@@ -4,9 +4,8 @@ module.exports = (sequelize, Sequelize) => {
         id: {
             allowNull: false,
             primaryKey: true,
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            unique: true
+            type: Sequelize.UUID,
+            defaultValue: Sequelize.UUIDV4
         },
 
         email: {

@@ -10,9 +10,8 @@ module.exports = {
         id: {
           allowNull: false,
           primaryKey: true,
-          type: DataTypes.INTEGER,
-          autoIncrement: true,
-          unique: true
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4
         },
 
         email: {

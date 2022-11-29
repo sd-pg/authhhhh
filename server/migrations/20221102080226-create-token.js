@@ -7,14 +7,13 @@ module.exports = {
     try {
       await queryInterface.createTable("Tokens", {
         id: {
-          type: DataTypes.INTEGER,
-          primaryKey: true,
           allowNull: false,
-          autoIncrement: true,
-          unique: true
+          primaryKey: true,
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4
         },
         userId:{
-          type: DataTypes.INTEGER,
+          type: Sequelize.UUID,
           references: {
             model: "Users",
             key: "id"
